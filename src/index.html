@@ -1,0 +1,38 @@
+<html lang="en-us">
+<head>
+  <script src="jquery-2.2.2.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    'use strict';
+    window.onload = function () {
+      $.ajax({
+        url: "/api/settings",
+        success: function (data) {
+          $("#submitButton").on("click", function() {
+            var settings = $.parseJSON(data);
+            var emailFieldValue = $("#emailField").val();
+            var tippiqIDPUrl = settings.tippiqIDPUrl
+                + '?email=' + encodeURIComponent(emailFieldValue)
+                + '&clientId=' + settings.clientId
+                + '&redirect_uri=' + encodeURIComponent(settings.reference3PRequestPoliciesUrl)
+                + '&failure_uri=' + encodeURIComponent(settings.reference3PFailureUrl);
+            window.location.href = tippiqIDPUrl;
+          });
+        }
+      });
+    };
+  </script>
+</head>
+<body>
+<div id="page-home" class="third-party">
+  <h1>Registreer je bij 3rd Party</h1>
+  <h2>Privacy (5/6)</h2>
+  <p>Je toestemmingen beheer je zelf met Tippiq.</p>
+  <h3>Je account details:</h3>
+  <input type="hidden" name="redirectUrl">
+  <label for="nameField">Naam</label><input type="text" name="name" id="nameField" value="test naam"><br/>
+  <label for="emailField">Email adres</label><input type="text" name="email" id="emailField" value="test@tippiq.nl" ><br/>
+  <input type="submit" id="submitButton" value="Privacy-voorkeuren instellen">
+</div>
+</body>
+</html>

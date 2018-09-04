@@ -1,0 +1,26 @@
+@startuml
+title OAuth2 Authorization Code Flow
+'caption Diagram OAuth2 Authorization Code Flow
+
+actor "End User" as user
+participant "Client" as sp
+participant "Authorization Server" as TippiqPlaces
+
+sp -> TippiqPlaces: redirect browser (user) [AuthorizationRequest]
+user -> TippiqPlaces: grant access
+TippiqPlaces -> sp: redirect browser (user) [AuthorizationCode]
+
+sp -> TippiqPlaces: request acces token [AuthorizationCode]
+TippiqPlaces -> sp: [AccessToken]
+sp -> sp: store AccessToken
+
+group Client: Every time resources are needed
+  sp -> TippiqPlaces: retrieve resources [AccessToken]
+  TippiqPlaces -> sp: resources
+end
+
+@enduml
+
+' http://tools.ietf.org/html/rfc6749#section-1.2
+
+' Note: made with PlantUML (http://plantuml.com/)

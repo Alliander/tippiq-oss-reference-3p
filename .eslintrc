@@ -1,0 +1,66 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:jasmine/recommended",
+    "plugin:mocha/recommended"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "jasmine": true,
+    "protractor": true,
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "jasmine",
+    "mocha"
+  ],
+  "rules": {
+    "arrow-parens": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-named-as-default": "off",
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "complexity": [
+      "error",
+      5
+    ],
+    "jasmine/no-spec-dupes": 0,
+    "max-depth": [
+      "error",
+      3
+    ],
+    "max-params": [
+      "error",
+      4
+    ],
+    "max-statements": [
+      "error",
+      15
+    ],
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true,
+        }
+      }
+    ],
+  },
+  "globals": {
+    "root": true,
+    "__DEVELOPMENT__": true,
+    "__CLIENT__": true,
+    "__SERVER__": true,
+    "__DISABLE_SSR__": true,
+    "__DEVTOOLS__": true,
+    "__DEBUG__": true,
+    "__SSR__": true,
+    "socket": true,
+    "webpackIsomorphicTools": true,
+  },
+}

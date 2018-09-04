@@ -1,0 +1,44 @@
+<html lang="en-us">
+<head>
+  <script src="jquery-2.2.2.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    'use strict';
+    window.onload = function () {
+      $.ajax({
+        dataType: "json",
+        // Get code from query string
+        url: "/api/policies?code=" + document.location.search.split('=')[1],
+        success: function (data) {
+          $.each(data, function(index, policy) {
+            $("#policies").append('<li><p>' + policy.title + '</p>' + policy.description + '</li>');
+          });
+        }
+      });
+
+      $.ajax({
+        url: "/api/settings",
+        success: function (data) {
+          $("#submitButton").on("click", function() {
+            var settings = $.parseJSON(data);
+            var managePoliciesUrl = settings.tippiqPlacesUrl
+                + '/huis/' + settings.placeId
+                + '/' + settings.clientId
+                + '/huisregels/wijzigen';
+            window.location.href = managePoliciesUrl;
+          });
+        }
+      });
+    };
+  </script>
+</head>
+<body>
+  <div id="page-bedankt">
+    <h1>Bedankt</h1>
+    <p>De volgende huisregels staan ingesteld:</p>
+    <ul id="policies"></ul>
+    <br />
+    <input type="submit" id="submitButton" value="Huisregels aanpassen">
+  </div>
+</body>
+</html>

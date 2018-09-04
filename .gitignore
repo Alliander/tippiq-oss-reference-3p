@@ -1,0 +1,19 @@
+# Node
+node_modules
+npm-debug.log
+build
+
+# Other
+.DS_Store
+
+# IDE
+.idea
+
+# Wercker
+_builds
+_cache
+_steps
+_projects
+
+# Protractor
+protractor-screenshots

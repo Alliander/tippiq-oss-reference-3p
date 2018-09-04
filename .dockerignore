@@ -1,0 +1,15 @@
+node_modules
+protractor-screenshots
+k8s
+jenkins
+Jenkinsfile
+build
+Dockerfile
+.dockerignore
+.editorconfig
+.eslintrc
+.eslintignore
+.git
+.gitignore
+.nvmrc
+CHANGELOG.md

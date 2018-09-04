@@ -1,0 +1,37 @@
+@startuml
+title Reference 3rd Party implementation
+'caption Diagram Reference 3rd Party implementation
+
+actor "End User" as user
+participant "Reference 3rd Party" as sp
+participant "Tippiq IDP" as idp
+database "Tippiq Places" as TippiqPlaces
+
+user -> sp: Button at Reference 3rd Party
+
+sp -> idp: redirect browser (user)\n[email]
+group IDP: select Tippiq ID
+  user -> idp: Already logged in OR
+  user -> idp: AutoCreate OR
+  user -> idp: Login OR
+  user -> idp: Manually create OR
+end
+idp -> sp: redirect browser (user)
+
+sp -> TippiqPlaces: redirect browser (user)\n[policiesRequest,\n authorizationRequest(token, clientId, redirect_uri)]
+user -> TippiqPlaces: set policies
+user -> TippiqPlaces: grant access
+TippiqPlaces -> sp: redirect browser (user)\n[authorizationCode(code)]
+
+sp -> TippiqPlaces: retrieve acces token\n[authorizationCode(code),\n basicAuth(clientId, clientSecret)]
+TippiqPlaces -> sp: [accessToken(token)]
+sp -> sp: store AccessToken
+
+group Reference 3rd Party: example retrieving policies
+  sp -> TippiqPlaces: retrieve policies\n[accessToken(token)]
+  TippiqPlaces -> sp: policies
+end
+
+@enduml
+
+' Note: made with PlantUML (http://plantuml.com/)

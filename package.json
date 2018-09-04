@@ -1,0 +1,68 @@
+{
+  "name": "tippiq-oss-reference-3p",
+  "description": "Reference 3rd party Tippiq Huisregels flow",
+  "author": "Tippiq <info@tippiq.nl> (http://github.com/alliander)",
+  "license": "GPL-3.0-only",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alliander/tippiq-oss-reference-3p.git"
+  },
+  "homepage": "",
+  "keywords": [
+    "tippiq",
+    "policies",
+    "reference"
+  ],
+  "main": "api/server.js",
+  "scripts": {
+    "start:dev": "babel-node $NODE_DEBUG_OPTION ./api/server.js",
+    "start": "node $NODE_DEBUG_OPTION build/api/server.js",
+    "build": "babel --copy-files --source-maps inline --out-dir build/api api",
+    "clear": "npm-run-all -ln clear:build",
+    "clear:all": "npm-run-all -ln clear:build clear:dependencies",
+    "clear:build": "rm -rf build",
+    "clear:dependencies": "rm -rf node_modules",
+    "lint": "eslint -c .eslintrc api"
+  },
+  "engines": {
+    "node": "6.9.1"
+  },
+  "dependencies": {
+    "babel-runtime": "6.23.0",
+    "cookie-parser": "1.4.3",
+    "debug-logger": "0.4.1",
+    "express": "4.14.0",
+    "jsonwebtoken": "7.2.1",
+    "lodash": "4.11.1",
+    "morgan": "1.8.1",
+    "npm-run-all": "4.0.2",
+    "query-string": "4.1.0",
+    "serve-static": "1.10.2",
+    "superagent": "1.8.3"
+  },
+  "devDependencies": {
+    "babel": "6.23.0",
+    "babel-cli": "6.23.0",
+    "babel-core": "6.10.4",
+    "babel-eslint": "7.1.1",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-stage-0": "6.22.0",
+    "babel-register": "6.9.0",
+    "chai": "3.5.0",
+    "eslint": "3.7.0",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-loader": "1.5.0",
+    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-jasmine": "1.8.1",
+    "eslint-plugin-jsx-a11y": "2.2.2",
+    "eslint-plugin-mocha": "4.6.0",
+    "eslint-plugin-react": "6.3.0",
+    "secure-random-string": "1.0.0",
+    "superagent-promise-plugin": "3.2.0",
+    "superagent-use": "0.0.1"
+  }
+}
